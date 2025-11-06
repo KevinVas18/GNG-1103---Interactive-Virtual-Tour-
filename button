@@ -1,0 +1,14 @@
+using UnityEngine;
+
+public class ObjectController : MonoBehaviour
+{
+    public void RotateObject()
+    {
+        transform.Rotate(Vector3.up * 45f);
+    }
+
+    public void ChangeColor()
+    {
+        GetComponent<Renderer>().material.color = Random.ColorHSV();
+    }
+}
