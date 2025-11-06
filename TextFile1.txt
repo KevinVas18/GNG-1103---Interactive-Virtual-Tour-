@@ -1,0 +1,14 @@
+using UnityEngine;
+using Unity.UI;
+using UnityEngine.SceneManagement;
+public class SceneSwitch: MonoBehaviour
+{
+	
+	{
+		SceneManager.LoadSampleScene("SampleScene");
+	}
+	public void LoadSampleScene()
+	{
+		SceneManager.LoadScene("Scene1");
+	}
+}
