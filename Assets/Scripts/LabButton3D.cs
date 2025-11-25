@@ -2,16 +2,14 @@ using UnityEngine;
 
 public class LabButton3D : MonoBehaviour
 {
-    public GameObject textObject; // Assign the text object in the inspector
+    [SerializeField] private GameObject uiToShow;
 
     public void OnPressed()
     {
-        Debug.Log("3D button pressed!");
-
-        // Toggle the text on click
-        if (textObject != null)
+        if (uiToShow != null)
         {
-            textObject.SetActive(!textObject.activeSelf);
+            bool isActive = uiToShow.activeSelf;
+            uiToShow.SetActive(!isActive);
         }
     }
 }
