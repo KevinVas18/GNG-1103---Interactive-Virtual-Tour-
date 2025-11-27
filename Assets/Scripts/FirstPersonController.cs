@@ -4,13 +4,13 @@ using UnityEngine;
 public class FirstPersonController : MonoBehaviour
 {
     [Header("Movement")]
-    public float moveSpeed = 5f;
+    public float moveSpeed = 1.0f;
     public float gravity = -9.81f;
-    public float jumpHeight = 1.5f;
+    public float jumpHeight = 1.0f;
 
     [Header("Mouse Look")]
     public Transform cameraTransform;
-    public float mouseSensitivity = 200f;
+    public float mouseSensitivity = 100f;
     public float minLookX = -80f;
     public float maxLookX = 80f;
 

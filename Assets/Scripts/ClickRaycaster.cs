@@ -1,53 +1,82 @@
 using UnityEngine;
+using UnityEngine.UI;   
+using TMPro;
 
 public class ClickRaycaster : MonoBehaviour
 {
+    [Header("Raycast Settings")]
     public float maxDistance = 5f;
-    public GameObject ui;
 
-    void Start()
+    [Header("UI")]
+    public GameObject ui;     // Panel / popup
+    public TMP_Text uiText;    
+
+    private Camera cam;
+
+    private void Awake()
+    {
+        cam = Camera.main;
+    }
+
+    private void Start()
     {
         if (ui != null)
             ui.SetActive(false);
     }
 
-    void Update()
+    private void Update()
     {
-        // Start each frame assuming we're not on a button
-        LabButton3D button = null;
+        if (cam == null) return;
 
-        // Ray from center of screen (crosshair style)
-        Ray ray = Camera.main.ScreenPointToRay(
+        // --- 1. Default state every frame: hide UI ---
+        if (ui != null)
+            ui.SetActive(false);
+
+        if (uiText != null)
+            uiText.text = "";
+
+        // --- 2. Shoot ray from center of screen ---
+        Ray ray = cam.ScreenPointToRay(
             new Vector3(Screen.width / 2f, Screen.height / 2f, 0f)
         );
 
-        if (Physics.Raycast(ray, out RaycastHit hit, maxDistance))
+        if (!Physics.Raycast(ray, out RaycastHit hit, maxDistance))
+            return;
+
+        // --- 3. Check for LabButton3D first ---
+        if (hit.collider.CompareTag("LabButton"))
         {
-            // See if what we hit is a LabButton3D
-            if (hit.collider.TryGetComponent<LabButton3D>(out button))
+            if (hit.collider.TryGetComponent(out LabButton3D labBtn))
             {
-                // We are looking at a button → show UI
+                // Looking at a lab button
                 if (ui != null)
                     ui.SetActive(true);
 
-                // Click to activate
                 if (Input.GetMouseButtonDown(0))
-                {
-                    button.OnPressed();
-                }
-            }
-            else
-            {
-                // Hit something, but not a button → hide UI
-                if (ui != null)
-                    ui.SetActive(false);
+                    labBtn.OnPressed();
+
+                return; 
             }
         }
-        else
+
+        // --- 4. Check for LoadStartOnClick (start/exit button) ---
+        if (hit.collider.CompareTag("ExitButton"))
         {
-            // Hit nothing → hide UI
-            if (ui != null)
-                ui.SetActive(false);
+            if (hit.collider.TryGetComponent(out LoadStartOnClick startBtn))
+            {
+                if (ui != null)
+                    ui.SetActive(true);
+
+                if (uiText != null)
+                    uiText.text = startBtn.hoverMessage;
+
+                if (Input.GetMouseButtonDown(0))
+                    startBtn.OnPressed();
+
+                return;
+            }
         }
+
+        // If it hits something else → UI stays hidden because we reset it at top
     }
 }
