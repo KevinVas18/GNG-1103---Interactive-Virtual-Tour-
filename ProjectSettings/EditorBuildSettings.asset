@@ -9,16 +9,16 @@ EditorBuildSettings:
     path: Assets/OutdoorsScene.unity
     guid: 8124e5870f4fd4c779e7a5f994e84ad1
   - enabled: 1
-    path: Assets/UI Welcome Screen.unity
+    path: Assets/Scenes/UI Welcome Screen.unity
     guid: 80e1d57a4def7f84bb6f5b99363bacba
   - enabled: 1
-    path: Assets/Instructions.unity
+    path: Assets/Scenes/Instructions.unity
     guid: 409fd15aabaac23499e6873ad1a8b5aa
   - enabled: 1
-    path: Assets/Settings UI.unity
+    path: Assets/Scenes/Settings UI.unity
     guid: 048c113367d76de4b8f06fc053db1a50
   - enabled: 1
-    path: Assets/Tour.unity
+    path: Assets/Scenes/Tour.unity
     guid: 2cf8b6b965353bd4cb29a8c7cc7f2158
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 35845fe01580c41289b024647b1d1c53, type: 3}

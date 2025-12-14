@@ -56,11 +56,14 @@
     <Compile Include="Assets\Scripts\LoadSettingScene.cs" />
     <Compile Include="Assets\Scripts\SpawnRotatable.cs" />
     <Compile Include="Assets\Scripts\GoToScene.cs" />
+    <Compile Include="Assets\Scripts\VideoController.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\Scripts\FirstPersonController.cs" />
     <Compile Include="Assets\Scripts\ClickRaycaster.cs" />
     <Compile Include="Assets\Scripts\QuitApplication.cs" />
+    <Compile Include="Assets\Scripts\ParkourButton.cs" />
     <Compile Include="Assets\Scripts\DragRotate.cs" />
+    <Compile Include="Assets\Scripts\RaycastTeleport.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

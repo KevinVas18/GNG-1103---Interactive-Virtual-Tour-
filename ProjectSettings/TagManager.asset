@@ -6,6 +6,9 @@ TagManager:
   tags:
   - ExitButton
   - LabButton
+  - SecretButton
+  - TeleportButton
+  - RewardButton
   layers:
   - Default
   - TransparentFX

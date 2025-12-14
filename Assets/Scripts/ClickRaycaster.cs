@@ -10,7 +10,7 @@ public class ClickRaycaster : MonoBehaviour
     [Header("UI")]
     public GameObject ui;     // Panel / popup
     public TMP_Text uiText;    
-
+    public ControlledVideo videoController;
     private Camera cam;
 
     private void Awake()
@@ -67,8 +67,6 @@ public class ClickRaycaster : MonoBehaviour
                 if (ui != null)
                     ui.SetActive(true);
 
-                if (uiText != null)
-                    uiText.text = startBtn.hoverMessage;
 
                 if (Input.GetMouseButtonDown(0))
                     startBtn.OnPressed();
@@ -77,6 +75,24 @@ public class ClickRaycaster : MonoBehaviour
             }
         }
 
+        if (hit.collider.CompareTag("RewardButton"))
+        {
+            if (hit.collider.TryGetComponent(out ParkourButton parkourBtn))
+            {
+                // Looking at a button
+                if (ui != null)
+                    ui.SetActive(true);
+                
+                if (Input.GetMouseButtonDown(0))
+                    parkourBtn.OnPressed();
+                
+                return; 
+            }
+        }
+        if (!ui.activeSelf)
+        {
+            videoController.StopVideo();
+        }
         // If it hits something else → UI stays hidden because we reset it at top
     }
 }
